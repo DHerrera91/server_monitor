@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
 
   # GET /users/1
   def show
-    @user = User.find(params[:id])
+    
 
     if @user
       render json: {data: @user, status: :ok}
@@ -36,7 +36,7 @@ class Api::V1::UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
-    @user = User.find(user_params[:id])
+
 
     if @user.update(user_params)
       render json: {message:"User succesfully updated", data: @user, status: :ok}
@@ -47,7 +47,7 @@ class Api::V1::UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
-  @user = User.find(params[:id])
+  
 
   if @user.destroy!
     render json: {message: "User deleted succesfully", data: @user, status: :ok}

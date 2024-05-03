@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'current_user', to: 'current_user#index'
   # Existing routes for Devise
   devise_for :users, path: '', path_names: {
     sign_in: 'login',

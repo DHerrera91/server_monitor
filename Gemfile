@@ -54,3 +54,8 @@ gem "devise-jwt", "~> 0.11.0"
 
 gem 'jsonapi-serializer'
 
+group :test do
+  gem "rspec-rails", "~> 6.1"
+end
+
+

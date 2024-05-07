@@ -9,3 +9,36 @@
 #   end
 
     user = User.create(first_name: "John", last_name: "Doe", password: "abc123", role: "admin" )
+
+
+
+
+# Seeding some server data.
+
+servers = [
+  { IP: "10.0.0.1", region: "US East", name: "Web Server 1", Operational_state: true },
+  { IP: "10.0.0.2", region: "US West", name: "Database Server 1", Operational_state: true },
+  { IP: "10.0.0.3", region: "EU Central", name: "Application Server 1", Operational_state: false },
+  { IP: "10.0.0.4", region: "AP Southeast", name: "Mail Server 1", Operational_state: true },
+  { IP: "10.0.0.5", region: "US East", name: "Web Server 2", Operational_state: true },
+  { IP: "10.0.0.6", region: "US West", name: "Database Server 2", Operational_state: false },
+  { IP: "10.0.0.7", region: "EU Central", name: "Application Server 2", Operational_state: true },
+  { IP: "10.0.0.8", region: "AP Southeast", name: "Backup Server 1", Operational_state: true },
+  { IP: "10.0.0.9", region: "US East", name: "VPN Server 1", Operational_state: false },
+  { IP: "10.0.0.10", region: "US West", name: "File Server 1", Operational_state: true },
+  { IP: "10.0.0.11", region: "EU Central", name: "Development Server 1", Operational_state: true },
+  { IP: "10.0.0.12", region: "AP Southeast", name: "Monitoring Server 1", Operational_state: false },
+  { IP: "10.0.0.13", region: "US East", name: "Web Server 3", Operational_state: true },
+  { IP: "10.0.0.14", region: "US West", name: "Cache Server 1", Operational_state: false },
+  { IP: "10.0.0.15", region: "EU Central", name: "Production Server 1", Operational_state: true }
+]
+
+servers.each do |server_data|
+  server = Server.create(server_data)
+  if server.errors.any?
+    puts "Server creation failed with errors:"
+    puts server.errors.full_messages
+  end
+end
+
+

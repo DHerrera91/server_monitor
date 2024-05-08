@@ -1,4 +1,4 @@
-class ServersController < ApplicationController
+class Api::V1::ServersController < ApplicationController
   before_action :set_server, only: %i[ show update destroy ]
 
   # GET /servers
@@ -10,7 +10,11 @@ class ServersController < ApplicationController
 
   # GET /servers/1
   def show
-    render json: @server
+    if @server
+      render json:{data: @server, status: :ok}
+    else
+      render json:{message: 'Server could not be found', status:'bad_request'}
+    end
   end
 
   # POST /servers
@@ -27,7 +31,7 @@ class ServersController < ApplicationController
   # PATCH/PUT /servers/1
   def update
     if @server.update(server_params)
-      render json: @server
+      render json: {data: @server, status: :ok}
     else
       render json: @server.errors, status: :unprocessable_entity
     end
@@ -46,6 +50,6 @@ class ServersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def server_params
-      params.fetch(:server, {})
+      params.fetch(:server, {}).permit(:Operational_state)
     end
 end

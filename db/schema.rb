@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_07_190532) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_13_151713) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,10 +21,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_07_190532) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.datetime "log_time"
-    t.integer "event_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "url"
+    t.string "path"
+    t.string "request_method"
+    t.integer "status"
+    t.integer "user_id"
+    t.float "time_spent"
+    t.text "user_agent"
+    t.string "ip"
+    t.string "http_host"
+    t.string "error_type"
+    t.text "error_message"
   end
 
   create_table "regions", force: :cascade do |t|

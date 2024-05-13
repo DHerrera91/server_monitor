@@ -1,5 +1,7 @@
 require_relative "boot"
 
+require_relative "../app/middlewares/log_middleware.rb" 
+
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -28,5 +30,6 @@ module ServerMonitor
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.middleware.use LogMiddleware
   end
 end

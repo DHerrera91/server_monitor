@@ -50,6 +50,6 @@ class Api::V1::ServersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def server_params
-      params.fetch(:server, {}).permit(:Operational_state)
+      params.fetch(:server, {}).permit(:operational_state)
     end
 end

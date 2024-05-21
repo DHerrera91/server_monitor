@@ -31,7 +31,7 @@ class LogMiddleware
         user_agent = env['HTTP_USER_AGENT']
         ip = env['action_dispatch.remote_ip'].calculate_ip
         request_method = env['REQUEST_METHOD']
-  
+        
         
         Log.create!(
         status: status,
@@ -42,7 +42,7 @@ class LogMiddleware
         user_agent: user_agent,
         ip: ip,
         request_method: request_method,
-  
+        
         error_type: exception&.class&.name,
         error_message: exception&.message
         )

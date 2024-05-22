@@ -1,12 +1,14 @@
 class Api::V1::UsersController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_user, only: %i[ show update destroy ]
+
     
     # GET /users
     def index
         @users = User.all
         
         if @users
-            render json: {status: "SUCCESS", message: "Fetched all the users successfully", data: @users, status: :ok}
+            render json: {message: "Fetched all the users successfully", data: @users, status: :ok}
         else
             render json: @user.errors, status: :bad_request
         end
@@ -28,7 +30,7 @@ class Api::V1::UsersController < ApplicationController
         @user = User.new(user_params)
         
         if @user.save
-            render json: {status: "SUCCESS", message: "User was created successfully!", data: @user, status: :created}
+            render json: {message: "User was created successfully!", data: @user, status: :created}
         else
             render json: {message: "User could not be created", status: :unprocessable_entity}
         end
@@ -67,6 +69,6 @@ class Api::V1::UsersController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def user_params
-        params.fetch(:user, {}).permit(:id, :first_name, :last_name, :password, :role, :email)
+        params.fetch(:user, {}).permit(:id, :first_name, :last_name, :encrypted_password, :email)
     end
 end
